@@ -1,0 +1,6 @@
+;init.pacm to spawn Luminix Shell at boot, called from kernel boot
+
+SPAWNSH:
+  L R80 WL_1620 ;SHELL WAVELENGTH
+  SFORK R80 R81 ;FORK + EXEC SHELL
+  RET
