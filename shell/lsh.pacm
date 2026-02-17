@@ -1,0 +1,58 @@
+;lsh.pacm Luminix Shell, (repl with signals)
+;user wavelength 1620
+
+ORG WL_1620
+SHELL_LOOP:
+  SIGCHK
+  RL stdin R1
+  PARSE R1 R2
+  FM R2 R3
+  BQ R3 #0 UNKNOWN
+  SFORK R3 R4
+  SETENV "PATH" path_val
+  WAIT R4
+  J SHELL_LOOP
+
+UNKNOWN:
+  WS "Command not found\n" stdout
+  J SHELL_LOOP
+
+SIGCHK:
+  L R91 [SIGPEND + CURTASK]
+  BQ R91 #0 NOSIG
+  C SIGHAND R91
+NOSIG:
+  RET
+
+SIGHAND:
+  L R90 pending_sig
+  BQ R90 #1 SIGINT
+  BQ R90 #9 SIGKILL
+  RET
+
+SIGINT:
+  CLEAR_INPUT
+  WS "^C\n" stdout
+  J SHELL_LOOP
+
+SIGKILL:
+  WS "Killed\n" stdout
+  SK CURTASK
+  H
+
+;USER-LEVEL PRIMITIVES
+RL: ;READLINE
+  RET
+PARSE:
+  RET
+
+FM:
+  RET
+
+CLEAR_INPUT:
+  VZ stdin_buffer #1
+  RET
+
+stdin EQU "stdin"
+stdout EQU "stdout"
+path_val EQU "/user/bin"
