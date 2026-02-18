@@ -1,0 +1,43 @@
+use std::core::*;
+use std::vector::*;
+
+type Path = String
+type File = Handle
+type Mode = Read | Write | Append
+
+morph open(path: Path, mode: Mode) -> File {
+  return kernel_open(path, mode)
+}
+
+morph read<T>(file: File) -> Section<T> {
+  return kernel_read(file)
+}
+
+morph write<T>(file: File, data: Section<T>) {
+  kernel_write(file, data)
+}
+
+morph close(file: File) {
+  kernel_close(file)
+}
+
+morph list(dir: Path) -> Vector<Path> {
+  return kernel_list(dir)
+}
+
+morph delete(path: Path) {
+  kernel_delete(path)
+}
+
+morph pipe(name: Path) -> (File, File) {
+  let w = open(name, Write)
+  let r = open(name, Read)
+  return (w, r)
+}
+
+//lumenc placeholders
+kernel_open(path: Path, mode: Mode) -> File
+kernel_read<T>(file: File, data: Section<t>)
+kernel_close(file: File)
+kernel_list(dir: Path0 -> Vector<Path>
+kernel_delete(path: Path)
