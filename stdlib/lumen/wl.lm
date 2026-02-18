@@ -1,0 +1,27 @@
+//wavelength channel management for spectral parallelism and task coordination 
+
+use std::core::*;
+
+type Wavelength = WL_
+
+morph chan(wl: Wavelength, body: Morph) {
+  for ch in channels {
+    chan ch.wl { ch.body() }
+  }
+}
+
+morph switch_to(wl: Wavelength) {
+  return wl
+}
+
+const WL_BOOT: Wavelength = WL_1530
+const WL_FORK: Wavelength = WL_1570
+const WL_MATMUL: Wavelength = WL_1576
+const WL_FFT: Wavelength = WL_1577
+const WL_CONV: Wavelength = WL_1578
+const WL_RELU: Wavelength = WL_1579
+const WL_SIGNAL: Wavelength = WL_1590
+
+morph current_wl() -> Wavelength {
+  return CUR_WL
+}
