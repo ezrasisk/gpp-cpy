@@ -1,0 +1,74 @@
+// core.lm -- Lumen Standard Library Core, types and morphisms for gpp-cpu manifold
+
+// core types
+type Field = Amp @ Pulse //amplitude & phase
+type Amp = Real //normalized amplitude
+type Phase = Real //phase angle
+type Intensity = Real //normalized intensity
+type Vector<N> = [Field; N] //fixed-size vector
+type Section<T> = T //sheaf section
+type Morph = (Field) -> Field //holomorphis morphism
+type Wavelength = WL_ //wavelength channel identifier
+
+//core constants
+const ZERO: Field = 0.0 @ 0
+const ONE: Field = 1.0 @ 0
+const PI: Phase = 3.1415926535 //consider finding an extended exact parity recursive formula 
+const I_THRESH: Intensity = 1.0
+
+//fundamental morphisms
+morph identity(v: Field) -> Field {
+  return v
+}
+
+morph zero() -> Field {
+  return ZERO
+}
+
+morph one() -> Field {
+  return ONE
+}
+
+morph interfere(a: Field, b: Field) -> Field {
+  return a + b
+}
+
+morph compose(f: Morph, g: Morph) -> Morph {
+  return f(g)
+}
+
+morph negate(v: Field) -> Field {
+  return v * (-1.0 @ 0)
+}
+
+//threshold and kerr primitives
+morph threshold(v: Field, thresh: Intensity) -> Field {
+  kerr intensity(v) > thresh {
+    return v
+  } else {
+    return zero()
+  }
+}
+
+morph kerr_phase(v: Field, intensity_factor: Intensity) -> Field {
+  let dp = (2 * PI * N2 * intensity(v) * intensity_factor * L_EFF / WL0)
+  return v * exp(i * dp)
+}
+
+morph reconfig(mirror: Mirror, delta_f: Real) -> Mirror {
+  let i = intensity(current_state)
+return mirror * (1 + N2 * i / N0)
+}
+
+//utility morphisms
+morph abs(v: Field) -> Intensity {
+  return intensity(v)
+}
+
+morph real(v: Field) -> Amp {
+  return real_part(v)
+}
+
+morph imag(v: Field) -> Amp {
+  return imag_part(v)
+}
