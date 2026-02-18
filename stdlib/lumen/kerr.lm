@@ -1,0 +1,34 @@
+//photonic native nonlinearity, thresholds,reconfiguration
+
+use std::core::*;
+
+const N2: Real = 2.7e-20 //kerr coefficient (m^2)/W
+const L_EFF: Real = 290e-6 //effective cavity length
+const I_THRESH: Intensity = 1.0 //default threshold, 1mW normalized 
+
+morph kerr_phase(v: Field, intensity_factor: Intensity) -> Field {
+  let dp = (2 * PI * N2 * intensity(v) * intensity_factor * L_EFF / WL0)
+  return v * exp(i * dp)
+}
+
+morph kerr_threshold(v: Field, thresh: Intensity) -> Field {
+  kerr intensity(v) > thresh {
+    return v
+  } else {
+    return zero()
+  }
+}
+
+morph reconfig(mirror: Mirror, target_delta_f: Real) -> Mirror {
+  let i = intensity(current_state)
+  let delta = N2 * i / N0
+  return mirror * (1 + delta)
+}
+
+morph vkerr<N>(v: Vector<N>, intensity_factor: Intensity) -> Vector<N> {
+  return v.map(kerr_phase(_, intensity_factor))
+}
+
+morph intensity(v: Field) -> Intensity {
+  return abs(v)
+}
