@@ -1,0 +1,45 @@
+use std::core::*;
+
+type Vector<N = 2048> = [Field; N]
+
+morph vzero<N>(v: Vector<N>) -> Vector<> {
+  return v.fill(ZERO)
+}
+
+morph vset<N>(v: Vector<N>, val: Field) -> Vector<N> {
+  return v.fill(val)
+}
+
+morph vadd<N>(a: Vector<N>, b: Vector<N>) -> Vector<N> {
+  return interfere(a, b)
+}
+
+morph vsub<N>(a: Vector<N>, b: Vector<N>) -> Vector<N> {
+  return a - b
+}
+
+morph vmul<N>(a: Vector<N>, b: Vector<N>) -> Vector<N> {
+  return a * b
+}
+
+//reduction and counting
+morph vmax<N>(v: Vector<N>) -> Field {
+  return max(v) //parallel max interference
+}
+
+morph vcount_true<N>(v: Vector<N, Bool>) -> Int {
+  return count(v == true)
+}
+
+//element-wise mapping, or snapping
+morph vmap<N, T>(v: Vector<N>, f: Morph<T>) -> Vector<N> {
+  return v.transform(f)
+}
+
+morph vthreshold<N>(v: Vector<N>, thresh: Intensity) -> Vector<N> {
+  return v.map(threshold(_, thresh))
+}
+
+morph vfill<N>(v: Vector<N>, pattern: Field) -> Vector<N> {
+  return v.fill(pattern)
+}
