@@ -33,8 +33,8 @@ optical kerr effect applies phase shift and then recombination at output mzi/tir
 deltaphi greater than pi/2 -> destructive (cross port). for nand gate this becomes: nand(A,B) = 1-theta(|A+B|(^2)-I(_th)*exp(i*pi*theta(|AB|(^2)-I_th))
 
 $I_{\text{cav}} = \frac{Q |E_{\text{in}}|^2}{\omega_0 V_{\text{mode}}}.$
-$  \Delta\phi < \pi/2  $
-$  \Delta\phi > \pi/2  $
+$\Delta\phi < \pi/2.$
+$\Delta\phi > \pi/2.$
 $\text{NAND}(A, B) = 1 - \theta(|A + B|^2 - I_{\text{th}}) \cdot \exp(i \pi \cdot \theta(|A B|^2 - I_{\text{th}})).$
 
 the overall operation for a task is the composition of morphisms on the sheaf: s_out = U(t)comp(mu)comp(phi(_lambda)(s(_0)+E(_op))) while s_0 provides the coherent reference or phase anchor, E_op
