@@ -1,3 +1,5 @@
+i guess ignore the kernel, shell and stdlib files bcs they will be rewritten in haskell 
+
 the gpp-cpu is modeled as a complex manifold M, a toric calabi-yau trifold realized physically as the octilayer S(i_3)N_4 stack with 33.6 million gng(s). 
 the state of the machine at any moment is a global section of the structure sheaf where the state S is an element of the zeroth cohomology, H(^0)(M, O).
 the zeroth cohomology is the space of coherent light amplitudes across all modes and layers, C(^(2048^3)*8). higher cohomology vanishes to guarantee local operations extend
