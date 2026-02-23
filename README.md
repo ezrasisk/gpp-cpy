@@ -1,4 +1,4 @@
-the gpp-cpu is modeled as a complex manifold M, a toric calabi-yau thifold realized physically as the octilayer S(i_3)N_4 stack with 33.6 million gng(s). 
+the gpp-cpu is modeled as a complex manifold M, a toric calabi-yau trifold realized physically as the octilayer S(i_3)N_4 stack with 33.6 million gng(s). 
 the state of the machine at any moment is a global section of the structure sheaf where the state S is an element of the zeroth cohomology, H(^0)(M, O).
 the zeroth cohomology is the space of coherent light amplitudes across all modes and layers, C(^(2048^3)*8). higher cohomology vanishes to guarantee local operations extend
 globally without obstruction, giving a coherent and stable system.
