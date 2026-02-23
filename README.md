@@ -21,7 +21,7 @@ $E_{\text{op}} = \sum_{i=1}^{2048} a_i \exp(i (\phi_i + k_0 \lambda_i z)),$
 $E_{\text{total}} = s_0 + E_{\text{op}}.$
 
 all computation is expressed as holomorphic morphisms acting on sheaf sections, the routing morphism (awg + mirrors), the propagation morphism (wavefront evolution), the
-kerr nonlinearity morphism (the gate operator), the interference operator (bilinear map no sections).
+kerr nonlinearity morphism (the gate operator), the interference operator (bilinear map on sections).
 
 $\phi_\lambda(E) = E \exp\left( i \frac{2\pi d \cos\theta}{\lambda} \right), \quad \theta = \cos^{-1}\left( \frac{m\lambda}{n_{\text{eff}}\Lambda} \right).$
 $U(t) = \exp\left( -i k_0 n x t \right) \exp\left( -\frac{t}{\tau} \right), \quad \tau = 213\,\text{ps}.$
