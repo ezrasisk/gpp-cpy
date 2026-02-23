@@ -3,6 +3,8 @@ the state of the machine at any moment is a global section of the structure shea
 the zeroth cohomology is the space of coherent light amplitudes across all modes and layers, C(^(2048^3)*8). higher cohomology vanishes to guarantee local operations extend
 globally without obstruction, giving a coherent and stable system.
 
+$\dim H^0(\mathcal{M}, \mathcal{O}) = 2048^3 \times 8 = 2^{36}.$
+
 booting begins with the trivial lambda injection at 1530nm, E_boot = A(_0)exp(i(K_0)z)exp(-((t^2)/(2(sigma^2)))), with phi_0 = zero.
 this trivial section, s_0, equals one as an element of H(^0)(M, O(1)), which is the coherent reference field that anchors all subsequent phases. after one propagation U(t) or
 after one 213ps wavefront, the manifold is in the state s = s_0, with norm preserved and phase locked to zero.
